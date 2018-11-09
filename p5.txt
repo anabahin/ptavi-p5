@@ -101,7 +101,7 @@ localizar usuarios.
         --86.64.162.35
 * ¿A qué puerto (del servidor Registrar) se envı́an los paquetes
 SIP?
-        --5063
+        --5060  dst PORT
 * ¿Qué método SIP utiliza el UA para registrarse?
     REGISTER
 * Además de REGISTER, ¿podrı́as decir qué instrucciones SIP entiende el UA?
@@ -110,31 +110,44 @@ SIP?
 
 9. Fijémonos en las tramas siguientes a la número 46:
 * ¿Se registra con éxito en el primer intento?
+        --NO, contesta con un ERROR: 401 Unauthorized
 * ¿Cómo sabemos si el registro se ha realizado correctamente o no?
+        --si, en el mensaje 54 le contesta con un 200 OK
 * ¿Podrı́as identificar las diferencias entre el primer intento y el
 segundo de registro? (fı́jate en el tamaño de los paquetes y mira
 a qué se debe el cambio)
+        -- length del primer register: 523 (no tiene cabecera authorization)y el length del segundo register: 712 porque en este segundo se identifica.
 * ¿Cuánto es el valor del tiempo de expiración de la sesión? Indica
 las unidades.
+        --3600 segundos
 
 10. Una vez registrados, podemos efectuar una llamada. Vamos a probar
 con el servicio de eco de Ekiga que nos permite comprobar si nos
 hemos conectado correctamente. El servicio de eco tiene la dirección
-sip:500@ekiga.net. Veamos el INVITE de cerca.
+sip:500@ekiga.net. Veamos el INVITE de cerca. **PAQUETE 84**
 * ¿Puede verse el nombre del que efectúa la llamada, ası́ como su
 dirección SIP?
+        --500@akiga.net
 * ¿Qué es lo que contiene el cuerpo de la trama? ¿En qué formato/protocolo está?
+        -- descripcion de la sesion: Protocolo(v) ID(o), connection information (c), time description(t), mane address(m), 9 atributos(a). SIP/SDP 
 * ¿Tiene éxito el primer intento? ¿Cómo lo sabes?
+        -- No, contesta con un error en la identificacion del Proxy 407
 * ¿En qué se diferencia el segundo INVITE más abajo del primero?
 ¿A qué crees que se debe esto?
-
+        --Diferentes length: 982 y 1181, el segundo paquete cuenta con la autentificacion del proxy.
+        
 11. Una vez conectado, estudia el intercambio de tramas.
 * ¿Qué protocolo(s) se utiliza(n)? ¿Para qué sirven estos protocolos?
+        --RTP y H.261(cuando se refiere a RTP video)
 * ¿Cuál es el tamaño de paquete de los mismos?
+        -- en audio es un tamaño fijo(214), y en video variable.
 * ¿Se utilizan bits de padding?
+        -- No
 * ¿Cuál es la periodicidad de los paquetes (en origen; nota que la
 captura es en destino)?
+        --*******
 * ¿Cuántos bits/segundo se envı́an?
+        --******
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una
