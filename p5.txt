@@ -84,22 +84,28 @@ que ha lanzado Ekiga?
 * Si lanzamos el navegador web, por ejemplo, Mozilla Firefox, y
 vamos a la misma URL, ¿qué recibimos? ¿Qué es, entonces, lo
 que está respondiendo el servidor?
+        -- 212.128.254.137
 
 7. Hasta la trama 45 se puede observar una secuencia de tramas del
 protocolo STUN.
 * ¿Por qué se hace uso de este protocolo?
+        --El servidor STUN permite a los clientes encontrar sus direcciones públicas, el tipo de NAT del cual ellos están atrás y el puerto Internet asociado por el NAT con el puerto local específico. 
 * ¿Podrı́as decir si estamos tras un NAT o no?
-
+        -- Si porque no coinciden nuestra IP publica con la que muestra el servidor.
 8. La trama 46 es la primera trama SIP. En un entorno como el de Internet, lo habitual es desconocer la dirección IP de la otra parte al
 realizar una llamada. Por eso, todo usuario registra su localización en
 un servidor Registrar. El Registrar guarda información sobre los
 usuarios en un servidor de localización que puede ser utilizado para
 localizar usuarios.
 * ¿Qué dirección IP tiene el servidor Registrar?
+        --86.64.162.35
 * ¿A qué puerto (del servidor Registrar) se envı́an los paquetes
 SIP?
+        --5063
 * ¿Qué método SIP utiliza el UA para registrarse?
+    REGISTER
 * Además de REGISTER, ¿podrı́as decir qué instrucciones SIP entiende el UA?
+        --Allow: INVITE,ACK,OPTIONS, BYE, CANCEL, NOTIFY, REFER, MESSAGE
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 9. Fijémonos en las tramas siguientes a la número 46:
