@@ -145,9 +145,9 @@ dirección SIP?
         -- No
 * ¿Cuál es la periodicidad de los paquetes (en origen; nota que la
 captura es en destino)?
-        --*******
+        --Segun el bit rate del protocolo utilizado y la longitud del cuerpo del paquete(160bytes), podemos saber que se mandan 50 paquetes por segundo -> Periodo = 0,2 segundos
 * ¿Cuántos bits/segundo se envı́an?
-        --******
+        -- El protocolo G.711 tiene un bit rate constante de 64kbit/s
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 
@@ -211,34 +211,56 @@ esa llamada y pulsa el botón Graph.
 
 Captura de una sesión SIP
 
-17. Dirı́gete a la web http://www.ekiga.net con el navegador y créate
-una cuenta. Lanza Ekiga, y configúralo con los datos de la cuenta
-que te acabas de crear. Comprueba que estás conectado (En la barra
-al final de la ventana podrás ver “Connected”). Al terminar, cierra
-completamente Ekiga.
+17.Dirígete a la web de IPTel con el navegador y créate una cuenta SIP.
+Recibirás un correo electrónico de confirmación en la dirección que has
+indicado al registrarte.
 
-18. Captura una sesión SIP de una conversación con el número SIP sip:500@ekigan.net.
+18.  Lanza Ekiga, y configúralo con los datos de la cuenta que te acabas de
+crear.  Para ello, puedes ir al menú “Editar” y seleccionar “Cuentas”.
+Tendrás que rellenar los campos de manera similar a lo que se puede
+ver en la imagen a continuación (recuerda poner tu nombre de usuario
+en  lugar  de  “grex”).   Comprueba  que  estás  conectado  (En  la  barra
+al final de la ventana podrás ver “Connected”).  Al terminar,  cierra
+completamente Ekiga
+
+19. Captura una sesión SIP de una conversación con el número SIP sip:music@sip.iptel.org.
 Recuerda que has de comenzar a capturar tramas antes de arrancar
 Ekiga para ver todo el proceso3 .
 
-19. Observa las diferencias en el inicio de la conversación entre el entorno
+20. Observa las diferencias en el inicio de la conversación entre el entorno
 del laboratorio y el del ejercicio anterior4 :
 * ¿Se utilizan DNS y STUN? ¿Por qué?
+    -- No usa STUN. Si usa DNS, en concreto MDNS
 * ¿Son diferentes el registro y la descripción de la sesión?
+    -- Si, la descripcion de la sesion aparece en los paqeutes INVITE
 
-20. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
+21. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
 * ¿Cuántos flujos tenemos?
+    -- 2 flujos de audio con 1053 y 1057 paquetes cada uno.
 * ¿Cuál es su periodicidad?
+    -- abrimos la grafica y nos salen 100 paquetes por segundo entre los dos flujos, como tienes casi los mismos paquetes, sabemos que en cada flujo se mandan 50 paquetes por segundo lo que nos da un periodo de 20ms .
 * ¿Cuánto es el valor máximo del delta y los valores medios y
 máximo del jitter?
+    --MAX DELTA:
+    Flujo1 = 50.095
+    Flujo2 = 38.170
+    MAX jitter:
+    Flujo1 = 4.260
+    Flujo2 = 13.746
+    Mean jitter:
+    Flujo1 = 0.685
+    Flujo2 = 12.499
+     
 * ¿Podrı́as reproducir la conversación desde Wireshark? ¿Cómo?
+    --Wireshark te da la opcion de reproducirlo pero luego no lo puede ejecutar, da error de codificacion.
 Comprueba que poniendo un valor demasiado pequeño para el
 buffer de jitter, la conversación puede no tener la calidad necesaria.
-* ¿Sabrı́as decir qué tipo de servicio ofrece sip:500@ekiga.net?
+* ¿Sabrı́as decir qué tipo de servicio ofrece sip:music@sip.iptel.org?
+    -- Servicio de música, es decir, audio.
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 
-21. Filtra por los paquetes SIP de la captura y guarda únicamente los
+22. Filtra por los paquetes SIP de la captura y guarda únicamente los
 paquetes SIP como p5.pcapng. Abre el fichero guardado para cerciorarte de que lo has hecho bien. Deberás añadirlo al repositorio.
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 [Al terminar la práctica, realiza un push para sincronizar tu repositorio GitHub]
