@@ -230,7 +230,7 @@ Ekiga para ver todo el proceso3 .
 20. Observa las diferencias en el inicio de la conversación entre el entorno
 del laboratorio y el del ejercicio anterior4 :
 * ¿Se utilizan DNS y STUN? ¿Por qué?
-    -- No usa STUN. Si usa DNS, en concreto MDNS
+    -- No usa STUN. Si usa DNS y MDNS(multicast).
 * ¿Son diferentes el registro y la descripción de la sesión?
     -- Si, la descripcion de la sesion aparece en los paqeutes INVITE
 
